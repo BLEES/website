@@ -6,8 +6,8 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-                       url(r'^$', include('blees.urls')),
-                       url(r'^admin/', include(admin.site.urls))
+                       url(r'^admin/', include(admin.site.urls)),
+                       url(r'^', include('blees.urls')),
 
     # Examples:
     # url(r'^$', 'personalsite.views.home', name='home'),
