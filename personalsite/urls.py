@@ -7,6 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
                        url(r'^$', include('blees.urls')),
+                       url(r'^admin/', include(admin.site.urls))
 
     # Examples:
     # url(r'^$', 'personalsite.views.home', name='home'),
