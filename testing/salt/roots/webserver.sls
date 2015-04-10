@@ -57,38 +57,6 @@ python3-markdown:
     - require:
       - pkg: apache2
 
-/etc/apache2/mods-enabled/ssl.load:
-  file.symlink:
-    - target: /etc/apache2/mods-available/ssl.load
-    - require:
-      - pkg: apache2
-
-/etc/apache2/mods-enabled/ssl.conf:
-  file.symlink:
-    - target: /etc/apache2/mods-available/ssl.conf
-    - require:
-      - pkg: apache2
-
-/etc/apache2/ssl/server.crt:
-  file.managed:
-    - source: salt://ssl/server.crt
-    - user: root
-    - group: root
-    - mode: 400
-    - makedirs: True
-    - require:
-      - pkg: apache2
-
-/etc/apache2/ssl/server.key:
-  file.managed:
-    - source: salt://ssl/server.key
-    - user: root
-    - group: root
-    - mode: 400
-    - makedirs: True
-    - require:
-      - pkg: apache2
-
 /etc/apache2/sites-enabled/000-personalsite:
   file.symlink:
     - target: /etc/apache2/sites-available/personalsite
@@ -106,6 +74,7 @@ www:
     - home: /home/www
     - groups:
       - www-data
+    - shell: /bin/bash
 
 www-data:
   user.present:
@@ -146,14 +115,6 @@ www-data:
     - makedirs: True
     - user: root
     - group: www-data
-    - mode: 664
-
-/etc/personalsite/lastfm_api_key.txt:
-  file.managed:
-    - source: salt://personalsite_conf/lastfm_api_key.txt
-    - makedirs: True
-    - user: root
-    - group: root
     - mode: 664
 
 /etc/personalsite/django_secret_key.txt:

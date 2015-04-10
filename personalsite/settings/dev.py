@@ -16,7 +16,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/etc/personalsite/personalsite.sqlite3',                      # Or path to database file if using sqlite3.
+        'NAME': os.path.join(PROJECT_DIR, 'db.sqlite3'),                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -137,8 +137,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 
     #project apps
-    'frontpage',
-    'blog',
+    'blees',
     'personalsite',
 )
 
@@ -176,10 +175,3 @@ LOGGING = {
 }
 
 # Site specific settings
-
-try:
-    with open('/etc/personalsite/lastfm_api_key.txt') as f:
-        LASTFM_API_KEY = f.read().strip()
-except IOError:
-    print("NO LAST FM API KEY")
-    LASTFM_API_KEY = ""

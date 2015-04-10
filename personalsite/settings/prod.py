@@ -4,7 +4,7 @@ import personalsite
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(personalsite.__file__))
 
-DEBUG = True  # set in dev.py and prod.py
+DEBUG = False  # set in dev.py and prod.py
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -133,8 +133,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 
     #project apps
-    'frontpage',
-    'blog',
+    'blees',
     'personalsite',
 )
 
@@ -172,6 +171,3 @@ LOGGING = {
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 # Site specific settings
-
-with open('/etc/personalsite/lastfm_api_key.txt') as f:
-    LASTFM_API_KEY = f.read().strip()
