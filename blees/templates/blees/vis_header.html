@@ -1,0 +1,149 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    var temp_view;
+    var humid_view;
+    var light_view;
+    var press_view;
+    var temp_chart;
+    var humid_chart;
+    var light_chart;
+    var press_chart;
+    var temp_options;
+    var humid_options;
+    var light_options;
+    var press_options;
+    var num_checked = 1;
+
+    // Load the Visualization API and the chart package.
+    google.load('visualization', '1.0', {'packages':['corechart']});
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.setOnLoadCallback(drawCharts);
+
+    function drawCharts() {
+        // Create the data table.
+        var temp_data = new google.visualization.DataTable();
+        temp_data.addColumn('datetime', 'Time');
+        temp_data.addColumn('number', 'EECS 2334');
+        temp_data.addRows([
+            {% for date, temp in temps %}
+                [new Date({{ date.year }}, {{ date.month }}, {{ date.day }},
+                        {{ date.hour }}, {{ date.minute }}, {{ date.second }}),
+                    {{ temp }}]{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ]);
+        temp_view = new google.visualization.DataView(temp_data);
+
+        // Set chart options
+        temp_options = {'title':'Temperature',
+            'width':500,
+            'height':300,
+            'explorer': {'axis': 'horizontal',
+                'keepInBounds': true,
+                'maxZoomOut': 2,
+                'maxZoomIn': 0.05,
+                'zoomDelta': 1.125},
+            'hAxis': {'title': 'Time'},
+            'vAxis': {'title': 'Temperature (degrees F)'}};
+
+        // Instantiate and draw our chart, passing in some options.
+        temp_chart = new google.visualization.LineChart(document.getElementById('temp_chart'));
+        temp_chart.draw(temp_view, temp_options);
+
+        // Create the data table.
+        var humid_data = new google.visualization.DataTable();
+        humid_data.addColumn('datetime', 'Time');
+        humid_data.addColumn('number', 'EECS 2334');
+        humid_data.addRows([
+            {% for date, humidity in humidities %}
+                [new Date({{ date.year }}, {{ date.month }}, {{ date.day }},
+                        {{ date.hour }}, {{ date.minute }}, {{ date.second }}),
+                    {{ humidity }}]{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ]);
+        humid_view = new google.visualization.DataView(humid_data);
+
+        // Set chart options
+        humid_options = {'title':'Humidity',
+            'width':500,
+            'height':300,
+            'explorer': {'axis': 'horizontal',
+                'keepInBounds': true,
+                'maxZoomOut': 2,
+                'maxZoomIn': 0.05,
+                'zoomDelta': 1.125},
+            'hAxis': {'title': 'Time'},
+            'vAxis': {'title': 'Relative Humidity (%)'}};
+
+        // Instantiate and draw our chart, passing in some options.
+        humid_chart = new google.visualization.LineChart(document.getElementById('humid_chart'));
+        humid_chart.draw(humid_view, humid_options);
+
+        // Create the data table.
+        var light_data = new google.visualization.DataTable();
+        light_data.addColumn('datetime', 'Time');
+        light_data.addColumn('number', 'EECS 2334');
+        light_data.addRows([
+            {% for date, light in lights %}
+                [new Date({{ date.year }}, {{ date.month }}, {{ date.day }},
+                        {{ date.hour }}, {{ date.minute }}, {{ date.second }}),
+                    {{ light }}]{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ]);
+        light_view = new google.visualization.DataView(light_data);
+
+        // Set chart options
+        light_options = {'title':'Light',
+            'width':500,
+            'height':300,
+            'explorer': {'axis': 'horizontal',
+                'keepInBounds': true,
+                'maxZoomOut': 2,
+                'maxZoomIn': 0.05,
+                'zoomDelta': 1.125},
+            'hAxis': {'title': 'Time'},
+            'vAxis': {'title': 'Illuminance (lux)'}};
+
+        // Instantiate and draw our chart, passing in some options.
+        light_chart = new google.visualization.LineChart(document.getElementById('light_chart'));
+        light_chart.draw(light_view, light_options);
+
+        // Create the data table.
+        var press_data = new google.visualization.DataTable();
+        press_data.addColumn('datetime', 'Time');
+        press_data.addColumn('number', 'EECS 2334');
+        press_data.addRows([
+            {% for date, press in pressures %}
+                [new Date({{ date.year }}, {{ date.month }}, {{ date.day }},
+                        {{ date.hour }}, {{ date.minute }}, {{ date.second }}),
+                    {{ press }}]{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ]);
+        press_view = new google.visualization.DataView(press_data);
+
+        // Set chart options
+        press_options = {'title':'Pressure',
+            'width':500,
+            'height':300,
+            'explorer': {'axis': 'horizontal',
+                'keepInBounds': true,
+                'maxZoomOut': 2,
+                'maxZoomIn': 0.05,
+                'zoomDelta': 1.125},
+            'hAxis': {'title': 'Time'},
+            'vAxis': {'title': 'Pressure (mbar)'}};
+
+        // Instantiate and draw our chart, passing in some options.
+        press_chart = new google.visualization.LineChart(document.getElementById('press_chart'));
+        press_chart.draw(press_view, press_options);
+    }
+</script>
+
+<style>
+    .col-half {
+        width: 50%;
+        position: relative;
+        float: left;
+    }
+</style>
