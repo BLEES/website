@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 
 
@@ -12,7 +14,7 @@ class Room(models.Model):
 class Measurement(models.Model):
     """Represents a given measurement"""
     room = models.ForeignKey(Room)
-    taken = models.DateTimeField(auto_now_add=True)
+    taken = models.DateTimeField(default=datetime.now)
     temperature = models.FloatField()
     humidity = models.FloatField()
     pressure = models.FloatField()
