@@ -28,7 +28,7 @@
         temp_data.addColumn('number', 'EECS 2334');
         temp_data.addRows([
             {% for date, temp in temps %}
-                [new Date({{ date.year }}, {{ date.month }}, {{ date.day }},
+                [new Date({{ date.year }}, {{ date.month }}-1, {{ date.day }},
                         {{ date.hour }}, {{ date.minute }}, {{ date.second }}),
                     {{ temp }}]{% if not forloop.last %},{% endif %}
             {% endfor %}
@@ -44,7 +44,9 @@
                 'maxZoomOut': 2,
                 'maxZoomIn': 0.05,
                 'zoomDelta': 1.125},
-            'hAxis': {'title': 'Time'},
+            'hAxis': {'title': 'Time',
+                      'format': 'MMM d h:mm a',
+                      'gridlines': {'count': 5}},
             'vAxis': {'title': 'Temperature (degrees F)'}};
 
         // Instantiate and draw our chart, passing in some options.
@@ -57,7 +59,7 @@
         humid_data.addColumn('number', 'EECS 2334');
         humid_data.addRows([
             {% for date, humidity in humidities %}
-                [new Date({{ date.year }}, {{ date.month }}, {{ date.day }},
+                [new Date({{ date.year }}, {{ date.month }}-1, {{ date.day }},
                         {{ date.hour }}, {{ date.minute }}, {{ date.second }}),
                     {{ humidity }}]{% if not forloop.last %},{% endif %}
             {% endfor %}
@@ -73,7 +75,9 @@
                 'maxZoomOut': 2,
                 'maxZoomIn': 0.05,
                 'zoomDelta': 1.125},
-            'hAxis': {'title': 'Time'},
+            'hAxis': {'title': 'Time',
+                      'format': 'MMM d h:mm a',
+                      'gridlines': {'count': 5}},
             'vAxis': {'title': 'Relative Humidity (%)'}};
 
         // Instantiate and draw our chart, passing in some options.
@@ -86,7 +90,7 @@
         light_data.addColumn('number', 'EECS 2334');
         light_data.addRows([
             {% for date, light in lights %}
-                [new Date({{ date.year }}, {{ date.month }}, {{ date.day }},
+                [new Date({{ date.year }}, {{ date.month }}-1, {{ date.day }},
                         {{ date.hour }}, {{ date.minute }}, {{ date.second }}),
                     {{ light }}]{% if not forloop.last %},{% endif %}
             {% endfor %}
@@ -102,7 +106,9 @@
                 'maxZoomOut': 2,
                 'maxZoomIn': 0.05,
                 'zoomDelta': 1.125},
-            'hAxis': {'title': 'Time'},
+            'hAxis': {'title': 'Time',
+                      'format': 'MMM d h:mm a',
+                      'gridlines': {'count': 5}},
             'vAxis': {'title': 'Illuminance (lux)'}};
 
         // Instantiate and draw our chart, passing in some options.
@@ -115,7 +121,7 @@
         press_data.addColumn('number', 'EECS 2334');
         press_data.addRows([
             {% for date, press in pressures %}
-                [new Date({{ date.year }}, {{ date.month }}, {{ date.day }},
+                [new Date({{ date.year }}, {{ date.month }}-1, {{ date.day }},
                         {{ date.hour }}, {{ date.minute }}, {{ date.second }}),
                     {{ press }}]{% if not forloop.last %},{% endif %}
             {% endfor %}
@@ -131,7 +137,9 @@
                 'maxZoomOut': 2,
                 'maxZoomIn': 0.05,
                 'zoomDelta': 1.125},
-            'hAxis': {'title': 'Time'},
+            'hAxis': {'title': 'Time',
+                      'format': 'MMM d h:mm a',
+                      'gridlines': {'count': 5}},
             'vAxis': {'title': 'Pressure (mbar)'}};
 
         // Instantiate and draw our chart, passing in some options.

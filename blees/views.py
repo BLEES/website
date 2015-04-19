@@ -38,6 +38,7 @@ def add_measurement(request, room):
     humidity = float(request.POST['humidity'])
     pressure = float(request.POST['pressure'])
     light = float(request.POST['light'])
+    temp = temp * 1.8 + 32
     new_measurement = Measurement(room=room_obj, temperature=temp,
                                   pressure=pressure, humidity=humidity,
                                   light=light)

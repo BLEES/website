@@ -15,13 +15,14 @@ def vis_header(m_class):
     weeks_measurements = weeks_measurements.order_by('taken')
     measurements = list(weeks_measurements)
 
-    temps = [(o.taken, o.temperature) for o in measurements]
+    # Note that this is hacked to get the timezone correct, should change in future
+    temps = [(o.taken - timedelta(hours=4), o.temperature) for o in measurements]
     """:type : list[float]"""
-    humidities = [(o.taken, o.humidity) for o in measurements]
+    humidities = [(o.taken - timedelta(hours=4), o.humidity) for o in measurements]
     """:type : list[float]"""
-    pressures = [(o.taken, o.pressure) for o in measurements]
+    pressures = [(o.taken - timedelta(hours=4), o.pressure) for o in measurements]
     """:type : list[float]"""
-    lights = [(o.taken, o.light) for o in measurements]
+    lights = [(o.taken - timedelta(hours=4), o.light) for o in measurements]
     """:type : list[float]"""
 
     return {
