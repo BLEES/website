@@ -25,7 +25,7 @@
         // Create the data table.
         var temp_data = new google.visualization.DataTable();
         temp_data.addColumn('datetime', 'Time');
-        temp_data.addColumn('number', 'EECS 2334');
+        temp_data.addColumn('number', '{{ room_n }}');
         temp_data.addRows([
             {% for date, temp in temps %}
                 [new Date({{ date.year }}, {{ date.month }}-1, {{ date.day }},
@@ -56,7 +56,7 @@
         // Create the data table.
         var humid_data = new google.visualization.DataTable();
         humid_data.addColumn('datetime', 'Time');
-        humid_data.addColumn('number', 'EECS 2334');
+        humid_data.addColumn('number', '{{ room_n }}');
         humid_data.addRows([
             {% for date, humidity in humidities %}
                 [new Date({{ date.year }}, {{ date.month }}-1, {{ date.day }},
@@ -87,7 +87,7 @@
         // Create the data table.
         var light_data = new google.visualization.DataTable();
         light_data.addColumn('datetime', 'Time');
-        light_data.addColumn('number', 'EECS 2334');
+        light_data.addColumn('number', '{{ room_n }}');
         light_data.addRows([
             {% for date, light in lights %}
                 [new Date({{ date.year }}, {{ date.month }}-1, {{ date.day }},
@@ -118,7 +118,7 @@
         // Create the data table.
         var press_data = new google.visualization.DataTable();
         press_data.addColumn('datetime', 'Time');
-        press_data.addColumn('number', 'EECS 2334');
+        press_data.addColumn('number', '{{ room_n }}');
         press_data.addRows([
             {% for date, press in pressures %}
                 [new Date({{ date.year }}, {{ date.month }}-1, {{ date.day }},
