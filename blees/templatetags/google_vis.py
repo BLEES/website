@@ -30,5 +30,5 @@ def vis_header(m_class):
         'humidities': humidities,
         'pressures': pressures,
         'lights': lights,
-        'room_n': room[:1].get().room_name,
+        'room_n': room[:1].get().room_name.replace("_", " "),
     }
